@@ -1,6 +1,8 @@
 import { cloneElement } from 'react';
 import { View, Text, Pressable, StyleSheet} from 'react-native';
 
+import Colors from '../constants/colors';
+
 // you can use props.children or {childern} directly  
 function PrimaryButton({children, onPress}) {
     // function pressHandler() {
@@ -28,7 +30,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     buttonInnerContainer: {
-        backgroundColor: 'pink',
+        backgroundColor: Colors.btns,
         paddingVertical: 8,
         paddingHorizontal: 15,
         alignContent: 'center',

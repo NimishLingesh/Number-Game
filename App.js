@@ -1,10 +1,24 @@
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, SafeAreaView } from 'react-native';
 // import { LinearGradient  } from 'expo-linear-gradient';
 
 import StartGameScreen from './screens/StartGameScreen';
+import GameScreen from './screens/GameScreen';
 
 export default function App() {
+  const [userNumber, setUserNumber] = useState();
+
+  function pickedNumberHandler(pickedNumber) {
+    setUserNumber(pickedNumber)
+  }
+
+  let screen = <StartGameScreen onPickedNumber={pickedNumberHandler}></StartGameScreen>;
+
+  if (userNumber) {
+    screen = <GameScreen></GameScreen>
+  }
+ 
   return (
     <View style={styles.container}>
       <ImageBackground 
@@ -13,7 +27,10 @@ export default function App() {
       style={styles.container}
       imageStyle={styles.backgroundImage}>
         <Text style={styles.heading}>Guess a Number!!</Text>
-        <StartGameScreen></StartGameScreen>
+        {/* <StartGameScreen></StartGameScreen> */}
+        <SafeAreaView style={styles.container}>
+        {screen}
+        </SafeAreaView>
       </ImageBackground>
     </View>
   );
@@ -23,7 +40,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // backgroundColor: '#e3ded0',
-    backgroundColor: '#ff5c5c',
+    // backgroundColor: '#ff5c5c',
     // alignItems: 'center',
     // justifyContent: 'center',
   },
