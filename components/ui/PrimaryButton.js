@@ -1,7 +1,7 @@
 import { cloneElement } from 'react';
 import { View, Text, Pressable, StyleSheet} from 'react-native';
 
-import Colors from '../constants/colors';
+import Colors from '../../constants/colors';
 
 // you can use props.children or {childern} directly  
 function PrimaryButton({children, onPress}) {
