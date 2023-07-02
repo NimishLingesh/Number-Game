@@ -26,7 +26,7 @@ export default PrimaryButton;
 const styles = StyleSheet.create({
     buttonOuterContainer: {
         borderRadius: 30,
-        margin: 15,
+        margin: 4,
         overflow: 'hidden',
     },
     buttonInnerContainer: {
@@ -37,6 +37,8 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     inputText: {
+        color: 'black',
+        textAlign: 'center',
     },
     pressed: {
         opacity: 0.75,
