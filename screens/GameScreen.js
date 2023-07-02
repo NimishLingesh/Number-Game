@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Alert } from "react-native";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from '../components/ui/PrimaryButton';
+import { AntDesign } from '@expo/vector-icons';
 
 import TitleTxt from "../components/ui/TitleTxt";
 
@@ -16,10 +17,11 @@ function generateRandomNumber(min, max, exclude){
         return rndNum;
     }
 }
+let minBoundary = 1;
+let maxBoundary = 100;
 
 function GameScreen(props) { 
-    var minBoundary = 1;
-    var maxBoundary = 100;
+
     var fixedMinBoundary = 1;
     var fixedMaxBoundary = 100;
 
@@ -34,6 +36,7 @@ function GameScreen(props) {
     }, [currentGuess, props.userNumber, props.onGameOver]);
 
     function nextGuessHandler(direction){
+        // console.log(direction, currentGuess,props.userNumber);
         if ((direction==="lower" && currentGuess < props.userNumber) || (direction==="greater" && currentGuess > props.userNumber)){
             Alert.alert("Dont lie!! You know that it's incorrect", [{text: "Sorry!", style: 'cancel'}]);
             return;
@@ -47,15 +50,6 @@ function GameScreen(props) {
 
         const newRndNumber = generateRandomNumber(minBoundary, maxBoundary, currentGuess);
         setCurrentGuess(newRndNumber);
-        // if (currentGuess === props.userNumber) {
-        //     Alert.alert("FOUND THE NUMBER!!!");
-        //     props.onGameOver();
-        //     return;
-        // }
-        // else if (currentGuess===fixedMinBoundary || currentGuess===fixedMaxBoundary) {
-        //     Alert.alert("Sorry, you lost the game");
-        //     return;
-        // }
     }
     return (
     <View style={styles.screen}>
@@ -64,11 +58,18 @@ function GameScreen(props) {
         <TitleTxt>Opponenet's Guess</TitleTxt>
         <br></br>
         <NumberContainer>{currentGuess}</NumberContainer>
-        <View>
-            <Text>Higher or lower</Text>
-            <View>
-                <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>+</PrimaryButton>
-                <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>-</PrimaryButton>
+        <Text>Select higher or lower number</Text>
+        <br></br>
+        <View style={styles.buttonsContainer}>
+            <View style={styles.buttonContainer}>
+                <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>
+                <AntDesign name="minus" size={30} color="black" />
+                </PrimaryButton>
+                </View>
+            <View style={styles.buttonContainer}>
+                <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>
+                <AntDesign name="plus" size={30} color="black" />
+                </PrimaryButton>
             </View>
         </View>
         {/* <Text> Log Rounds</Text> */}
@@ -80,7 +81,7 @@ export default GameScreen;
 
 const styles = StyleSheet.create({
     screen: {
-        padding: 12, 
+        padding: 34, 
         flex: 1,
     },
     title: {
@@ -91,5 +92,11 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'black',
         borderRadius: 6
+    },
+    buttonsContainer: {
+        flexDirection: 'row'
+    },
+    buttonContainer: {
+        flex: 1
     },
 })

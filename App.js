@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { ImageBackground, StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import AppLoading from 'expo-app-loading';
+import { useFonts } from 'expo-font';
 // import { LinearGradient  } from 'expo-linear-gradient';
 
 import StartGameScreen from './screens/StartGameScreen';
@@ -10,6 +12,16 @@ import GameScreen from './screens/GameScreen';
 export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [gameIsOver, setGameIsOver] = useState(true);
+  const [guessRounds, setGuessRounds] = useState(0);
+
+  const [fontsLoaded] = useFonts({
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require("./assets/fonts/OpenSans-Bold.ttf"),
+  })
+
+  if (!fontsLoaded) {
+    return <AppLoading/>;
+  }
 
   function pickedNumberHandler(pickedNumber) {
     setUserNumber(pickedNumber);
@@ -36,7 +48,7 @@ export default function App() {
   }
 
   if (gameIsOver &&  userNumber){
-    screen = <GameOverScreen onStartNewGame={startNewGameHandler}/>;
+    screen = <GameOverScreen onStartNewGame={startNewGameHandler} guessNumber={userNumber}/>;
   }
  
   return (
@@ -46,7 +58,7 @@ export default function App() {
       resizeMode="cover"
       style={styles.container}
       imageStyle={styles.backgroundImage}>
-        <Text style={styles.heading}>Guess a Number!!</Text>
+        {/* <Text style={styles.heading}>Guess a Number!!</Text> */}
         {/* <StartGameScreen></StartGameScreen> */}
         <SafeAreaView style={styles.container}>
         {screen}
@@ -63,16 +75,6 @@ const styles = StyleSheet.create({
     // backgroundColor: '#ff5c5c',
     // alignItems: 'center',
     // justifyContent: 'center',
-  },
-  heading: {
-    color: 'black',
-    fontWeight: 'bold',
-    fontSize: 25,
-    marginTop: 40,
-    // padding: 16,
-    marginHorizontal: 30,
-    // marginBottom: 10,
-    // flex: 3,
   },
   backgroundImage: {
     opacity: 0.85

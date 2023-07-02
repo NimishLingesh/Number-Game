@@ -3,8 +3,8 @@ import Colors from '../../constants/colors';
 
 function NumberContainer({children}){
     return (
-        <View style={StyleSheet.container}>
-            <Text style={StyleSheet.numberText}>{children}</Text>
+        <View style={style.container}>
+            <Text style={style.numberText}>{children}</Text>
         </View>
     )
 }
@@ -14,11 +14,17 @@ export default NumberContainer;
 const style = StyleSheet.create({
     container: {
         borderWidth: 4,
-        borderColor: Colors.yellow500,
+        borderColor: "grey",
         padding: 24,
+        margin: 24,
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
 
     },
     numberText: {
-
+        fontSize: 40,
+        fontWeight: 'bold',
+        fontFamily: 'open-sans-bold'
     }
 })

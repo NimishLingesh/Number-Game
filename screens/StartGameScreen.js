@@ -1,4 +1,4 @@
-import { TextInput, View, StyleSheet, Alert } from 'react-native';
+import { TextInput, View, StyleSheet, Alert, Text } from 'react-native';
 import { useState } from 'react';
 
 import PrimaryButton from '../components/ui/PrimaryButton';
@@ -30,29 +30,43 @@ function StartGameScreen({onPickedNumber}) {
     }
 
     return (
-        < View style={styles.inputContainer}>
-            <TextInput 
-                style={styles.numberInput} 
-                maxLength={2} 
-                keyboardType="number-pad"
-                autoCorrect={false}
-                onChangeText={numberInputHandler}
-                value={enteredNumber}/>
-            <View style={styles.buttonsContainer}>
-                <View style={styles.buttonContainer}>
-                < PrimaryButton onPress={resetInputHandler}>  Reset  </PrimaryButton>
-                </View>
-                <View style={styles.buttonContainer}>
-                < PrimaryButton onPress={confirmInputHandler}>Submit</PrimaryButton>
+        <View>
+            <Text style={styles.heading}>Guess a Number!!</Text>
+            < View style={styles.inputContainer}>
+                <TextInput 
+                    style={styles.numberInput} 
+                    maxLength={2} 
+                    keyboardType="number-pad"
+                    autoCorrect={false}
+                    onChangeText={numberInputHandler}
+                    value={enteredNumber}/>
+                <View style={styles.buttonsContainer}>
+                    <View style={styles.buttonContainer}>
+                    < PrimaryButton onPress={resetInputHandler}>  Reset  </PrimaryButton>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                    < PrimaryButton onPress={confirmInputHandler}>Submit</PrimaryButton>
+                    </View>
                 </View>
             </View>
         </View>
+
     )
 }
 
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
+    heading: {
+        color: 'black',
+        fontWeight: 'bold',
+        fontSize: 25,
+        marginTop: 40,
+        // padding: 16,
+        marginHorizontal: 30,
+        marginBottom: 10,
+        // flex: 3,
+      },
     inputContainer: {
         // justifyContent is top to bottom 
         justifyContent: 'center',
