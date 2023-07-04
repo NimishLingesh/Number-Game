@@ -56,10 +56,10 @@ function GameScreen(props) {
         {/* Modularizing the next line in the components  */}
         {/* <Text style={styles.title}>Opponenet's Guess</Text> */}
         <TitleTxt>Opponenet's Guess</TitleTxt>
-        <br></br>
+        {/* <View></View> */}
         <NumberContainer>{currentGuess}</NumberContainer>
         <Text>Select higher or lower number</Text>
-        <br></br>
+        {/* <View></View> */}
         <View style={styles.buttonsContainer}>
             <View style={styles.buttonContainer}>
                 <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>
