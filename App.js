@@ -52,6 +52,7 @@ export default function App() {
   }
  
   return (
+    // <StatusBar style='light'>
     <View style={styles.container}>
       <ImageBackground 
       source={require('./assets/images/back_img.jpg')}
@@ -60,15 +61,22 @@ export default function App() {
       imageStyle={styles.backgroundImage}>
         {/* <Text style={styles.heading}>Guess a Number!!</Text> */}
         {/* <StartGameScreen></StartGameScreen> */}
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.innerContainer}>
         {screen}
         </SafeAreaView>
       </ImageBackground>
     </View>
+    // </StatusBar>
   );
 }
 
 const styles = StyleSheet.create({
+  innerContainer: {
+    // maxWidth: '80%',
+    flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+  },
   container: {
     flex: 1,
     // backgroundColor: '#e3ded0',
